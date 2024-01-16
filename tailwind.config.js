@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         "smythe": ['Smythe', 'system-ui']
-      },
+      }
     },
   },
   plugins: [],
