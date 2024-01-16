@@ -1,5 +1,6 @@
 // import "./App.css"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { AppContextProvider } from "./context/AppContext"
 import Layout from "./components/Layout"
 import Menu from "./routes/Menu"
 import Order from "./routes/Order"
@@ -23,7 +24,9 @@ function App(): JSX.Element {
   ])
 
   return (
-    <RouterProvider router={router} />
+    <AppContextProvider>
+      <RouterProvider router={router} />
+    </AppContextProvider>
   )
 }
 

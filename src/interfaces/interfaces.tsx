@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 interface MenuObj {
   name: string;
   price: number;
@@ -6,4 +8,17 @@ interface MenuObj {
   isBeverage: boolean;
 }
 
-export type { MenuObj }
+interface AppContextData {
+  cartCount: number;
+  cartItems: MenuObj[];
+  itemCounts: {[key: string]: number};
+  addToCart: (index: number) => void;
+  removeOneFromItem: (index: number) => void;
+  addOneToItem: (index: number) => void;
+}
+
+interface AppContextProviderProps {
+  children: ReactNode;
+}
+
+export type { MenuObj, AppContextData, AppContextProviderProps }
