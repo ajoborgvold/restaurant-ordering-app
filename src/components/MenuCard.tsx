@@ -5,9 +5,10 @@ export default function MenuCard(): JSX.Element {
     return (
       <div
         key={index}
-        className="w-56 grid grid-cols-2 items-center border border-slate-50 rounded-lg p-2"
+        className="w-full grid grid-cols-2 items-center border-b border-slate-50 p-2"
       >
         <h3 className="capitalize font-semibold tracking-wide">{item.name}</h3>
+        <p>{item.ingredients.join(', ')}</p>
         <p className="font-bold">${item.price}</p>
         <div className="order-first row-span-2 flex items-center text-7xl">
           {item.image}
