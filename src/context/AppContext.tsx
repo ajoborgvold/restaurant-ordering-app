@@ -1,20 +1,30 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { menuData } from "../data/menuData"
-import { AppContextData, AppContextProviderProps, MenuObj } from "../interfaces/interfaces"
+import {
+  AppContextData,
+  AppContextProviderProps,
+  MenuObj,
+} from "../interfaces/interfaces"
 
 const AppContext = createContext<AppContextData>({
   cartCount: 0,
   cartItems: [],
   itemCounts: {},
-  addToCart: () => { },
-  removeOneFromItem: () => { },
-  addOneToItem: () => {}
+  addToCart: () => {},
+  removeOneFromItem: () => {},
+  addOneToItem: () => {},
 })
 
-function AppContextProvider({ children }: AppContextProviderProps): JSX.Element {
+function AppContextProvider({
+  children,
+}: AppContextProviderProps): JSX.Element {
   const [cartCount, setCartCount] = useState(0)
   const [cartItems, setCartItems] = useState<MenuObj[]>([])
-  const [itemCounts, setItemCounts] = useState<{[key: string]: number}>({})
+  const [itemCounts, setItemCounts] = useState<{ [key: string]: number }>({})
+
+  useEffect(() => {
+    setCartItems(prevCartItems => prevCartItems.filter(item => itemCounts[item.name] !== 0))
+  }, [itemCounts])
 
   function addToCart(index: number): void {
     const targetItem = menuData[index]
@@ -22,27 +32,24 @@ function AppContextProvider({ children }: AppContextProviderProps): JSX.Element 
       (item) => item.name === targetItem.name
     )
 
-    !isItemInArray && setCartItems((prevCartItems) => [...prevCartItems, targetItem])
+    !isItemInArray &&
+      setCartItems((prevCartItems) => [...prevCartItems, targetItem])
 
-    addOneToItem(index)
+    addOneToItem(targetItem.name)
   }
 
-  function addOneToItem(index: number): void {
-    const targetItem = menuData[index]
-
-    setItemCounts(prevItemCounts => ({
+  function addOneToItem(itemName: string): void {
+    setItemCounts((prevItemCounts) => ({
       ...prevItemCounts,
-      [targetItem.name]: (prevItemCounts[targetItem.name] || 0) + 1
+      [itemName]: (prevItemCounts[itemName] || 0) + 1,
     }))
     setCartCount((prevCartCount) => prevCartCount + 1)
   }
 
-  function removeOneFromItem(index: number): void {
-    const targetItem = menuData[index]
-
+  function removeOneFromItem(itemName: string): void {
     setItemCounts((prevItemCounts) => ({
       ...prevItemCounts,
-      [targetItem.name]: prevItemCounts[targetItem.name] - 1,
+      [itemName]: prevItemCounts[itemName] - 1,
     }))
     setCartCount((prevCartCount) => prevCartCount - 1)
   }

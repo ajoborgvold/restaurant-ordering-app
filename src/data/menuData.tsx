@@ -30,14 +30,14 @@ const menuData: MenuObj[] = [
     isBeverage: true,
   },
   {
-    name: "coffee",
+    name: "Coffee",
     price: 8,
     image: "☕️",
     ingredients: ["water", "coffee beans"],
     isBeverage: true,
   },
   {
-    name: "croissant",
+    name: "Croissant",
     price: 7,
     image: "🥐",
     ingredients: [

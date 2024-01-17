@@ -13,8 +13,8 @@ interface AppContextData {
   cartItems: MenuObj[];
   itemCounts: {[key: string]: number};
   addToCart: (index: number) => void;
-  removeOneFromItem: (index: number) => void;
-  addOneToItem: (index: number) => void;
+  removeOneFromItem: (itemName: string) => void;
+  addOneToItem: (itemName: string) => void;
 }
 
 interface AppContextProviderProps {
