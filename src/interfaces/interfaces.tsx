@@ -29,6 +29,7 @@ interface FormField {
   type: string;
   text: string;
   autoComplete: string;
+  pattern: RegExp;
 }
 
 interface LinkProps {

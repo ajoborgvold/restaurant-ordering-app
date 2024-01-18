@@ -9,18 +9,21 @@ const formFieldsArray: FormField[] = [
     type: "text",
     text: "Enter your full name",
     autoComplete: "full-name",
+    pattern: /^[A-Za-z]+$/
   },
   {
     id: "card-number",
     type: "number",
     text: "Enter credit card number",
     autoComplete: "credit-card-number",
+    pattern: /\d{16}/
   },
   {
     id: "ccv",
     type: "number",
     text: "Enter credit card CCV",
     autoComplete: "credit-card-ccv",
+    pattern: /\d{3}/
   },
 ]
 
@@ -61,6 +64,7 @@ export default function Modal(): JSX.Element {
             type={item.type}
             text={item.text}
             autoComplete={item.autoComplete}
+            pattern={item.pattern}
           />
         ))}
         <button
