@@ -13,8 +13,8 @@ interface AppContextData {
   cartItems: MenuObj[]
   itemCounts: { [key: string]: number }
   addToCart: (index: number) => void
-  removeOneFromItem: (index: number) => void
-  addOneToItem: (index: number) => void
+  removeOneFromItem: (targetItem: string) => void
+  addOneToItem: (targetItem: string) => void
   isModalOpen: boolean
   openPaymentModal: () => void
   closePaymentModal: () => void
@@ -37,8 +37,8 @@ interface LinkProps {
 }
 
 interface ButtonProps {
-  itemCountFunction: (index: number) => void;
-  index: number;
+  handleClick: (targetItem: string) => void;
+  targetItem: string;
   children: JSX.Element;
 }
 

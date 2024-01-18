@@ -25,14 +25,14 @@ export default function MenuCard(): JSX.Element {
         {countForItem ? (
           <div className="ml-auto flex items-center gap-4">
             <ButtonSmall
-              itemCountFunction={() => removeOneFromItem(index)}
-              index={index}
+              handleClick={() => removeOneFromItem(item.name)}
+              targetItem={item.name}
               children={<FaMinus aria-hidden="false" />}
             />
             <p className="text-xl font-semibold">{countForItem}</p>
             <ButtonSmall
-              itemCountFunction={() => addOneToItem(index)}
-              index={index}
+              handleClick={() => addOneToItem(item.name)}
+              targetItem={item.name}
               children={<FaPlus aria-hidden="false" />}
             />
           </div>

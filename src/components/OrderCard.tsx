@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { AppContext } from "../context/AppContext"
 
-
 export default function OrderCard(): JSX.Element {
-  const { cartItems, itemCounts } = useContext(AppContext)
+  const { cartItems, itemCounts } =
+    useContext(AppContext)
 
   const orderCardEl = cartItems.map((item) => {
     const itemQuantity = itemCounts[item.name]

@@ -15,7 +15,7 @@ const AppContext = createContext<AppContextData>({
   addOneToItem: () => {},
   isModalOpen: false,
   openPaymentModal: () => { },
-  closePaymentModal: () => {},
+  closePaymentModal: () => { },
 })
 
 function AppContextProvider({
@@ -41,25 +41,21 @@ function AppContextProvider({
     !isItemInArray &&
       setCartItems((prevCartItems) => [...prevCartItems, targetItem])
 
-    addOneToItem(index)
+    addOneToItem(targetItem.name)
   }
 
-  function addOneToItem(index: number): void {
-    const targetItem = menuData[index]
-
+  function addOneToItem(targetItem: string): void {
     setItemCounts((prevItemCounts) => ({
       ...prevItemCounts,
-      [targetItem.name]: (prevItemCounts[targetItem.name] || 0) + 1,
+      [targetItem]: (prevItemCounts[targetItem] || 0) + 1,
     }))
     setCartCount((prevCartCount) => prevCartCount + 1)
   }
 
-  function removeOneFromItem(index: number): void {
-    const targetItem = menuData[index]
-
+  function removeOneFromItem(targetItem: string): void {
     setItemCounts((prevItemCounts) => ({
       ...prevItemCounts,
-      [targetItem.name]: prevItemCounts[targetItem.name] - 1,
+      [targetItem]: prevItemCounts[targetItem] - 1,
     }))
     setCartCount((prevCartCount) => prevCartCount - 1)
   }
@@ -83,7 +79,7 @@ function AppContextProvider({
         removeOneFromItem,
         isModalOpen,
         openPaymentModal,
-        closePaymentModal
+        closePaymentModal,
       }}
     >
       {children}
