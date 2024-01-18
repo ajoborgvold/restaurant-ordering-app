@@ -13,8 +13,9 @@ const AppContext = createContext<AppContextData>({
   addToCart: () => {},
   removeOneFromItem: () => {},
   addOneToItem: () => {},
-  showPaymentModal: () => { },
   isModalOpen: false,
+  openPaymentModal: () => { },
+  closePaymentModal: () => {},
 })
 
 function AppContextProvider({
@@ -59,9 +60,12 @@ function AppContextProvider({
     setCartCount((prevCartCount) => prevCartCount - 1)
   }
 
-  function showPaymentModal() {
-    console.log("modal opened")
+  function openPaymentModal() {
     setIsModalOpen(true)
+  }
+
+  function closePaymentModal() {
+    setIsModalOpen(false)
   }
 
   return (
@@ -73,8 +77,9 @@ function AppContextProvider({
         addToCart,
         addOneToItem,
         removeOneFromItem,
-        showPaymentModal,
-        isModalOpen
+        isModalOpen,
+        openPaymentModal,
+        closePaymentModal
       }}
     >
       {children}
