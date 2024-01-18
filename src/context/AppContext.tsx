@@ -13,6 +13,8 @@ const AppContext = createContext<AppContextData>({
   addToCart: () => {},
   removeOneFromItem: () => {},
   addOneToItem: () => {},
+  showPaymentModal: () => { },
+  isModalOpen: false,
 })
 
 function AppContextProvider({
@@ -21,9 +23,12 @@ function AppContextProvider({
   const [cartCount, setCartCount] = useState(0)
   const [cartItems, setCartItems] = useState<MenuObj[]>([])
   const [itemCounts, setItemCounts] = useState<{ [key: string]: number }>({})
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    setCartItems(prevCartItems => prevCartItems.filter(item => itemCounts[item.name] !== 0))
+    setCartItems((prevCartItems) =>
+      prevCartItems.filter((item) => itemCounts[item.name] !== 0)
+    )
   }, [itemCounts])
 
   function addToCart(index: number): void {
@@ -54,6 +59,11 @@ function AppContextProvider({
     setCartCount((prevCartCount) => prevCartCount - 1)
   }
 
+  function showPaymentModal() {
+    console.log("modal opened")
+    setIsModalOpen(true)
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -63,6 +73,8 @@ function AppContextProvider({
         addToCart,
         addOneToItem,
         removeOneFromItem,
+        showPaymentModal,
+        isModalOpen
       }}
     >
       {children}

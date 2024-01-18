@@ -32,7 +32,7 @@ export default function Header(): JSX.Element {
       {location.pathname === "/" ? (
         <Link to="/order" className="relative ml-auto group">
           <FaShoppingCart
-            className={`text-amber-100 text-5xl md:text-6xl group-hover:text-amber-950 group-focus:text-amber-950 ${isAnimated ? 'rotate-6' : ''}`}
+            className="text-amber-100 text-5xl md:text-6xl group-hover:text-amber-950 group-focus:text-amber-950"
             aria-label="Show shopping cart"
             aria-hidden="false"
           />
@@ -45,7 +45,7 @@ export default function Header(): JSX.Element {
       ) : (
         <Link
           to="/"
-          className="ml-auto flex items-center gap-2 bg-amber-100 hover:bg-amber-950 focus:bg-amber-950 text-amber-950 hover:text-amber-100 focus:text-amber-100 text-xl p-2 border-2 border-amber-950 rounded-lg"
+          className="ml-auto flex items-center gap-2 bg-amber-100 text-amber-950 hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50 text-lg md:text-xl p-2 border-2 border-amber-950 rounded-lg"
         >
           <FaArrowLeft />
           Menu

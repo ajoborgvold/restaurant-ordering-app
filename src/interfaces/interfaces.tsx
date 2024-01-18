@@ -15,6 +15,8 @@ interface AppContextData {
   addToCart: (index: number) => void;
   removeOneFromItem: (itemName: string) => void;
   addOneToItem: (itemName: string) => void;
+  showPaymentModal: () => void;
+  isModalOpen: boolean;
 }
 
 interface AppContextProviderProps {
