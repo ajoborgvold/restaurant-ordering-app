@@ -16,10 +16,10 @@ export default function Order(): JSX.Element {
 
   return (
     <>
-      <main className="flex-1 flex flex-col gap-8 items-center py-4">
+      <main className="flex-1 flex flex-col gap-8 items-center py-8">
         {cartItems.length ? (
           <>
-            <h2 className="mt-8 text-4xl font-semibold">Your order</h2>
+            <h2 className="text-4xl font-semibold">Your order</h2>
             <section className="sm:w-2/3 lg:w-1/2 flex flex-col px-4">
               <OrderCard />
               <div className="mt-8 flex justify-between bg-amber-300 text-amber-950 text-2xl md:text-3xl p-4 rounded">
@@ -36,7 +36,7 @@ export default function Order(): JSX.Element {
           </>
         ) : (
           <>
-            <h2 className="mt-8 text-4xl font-semibold">
+            <h2 className="text-4xl font-semibold">
               Your shopping cart is empty
             </h2>
             <RouteLink path="/" children="Return to menu" />
