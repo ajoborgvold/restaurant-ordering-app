@@ -22,10 +22,10 @@ export default function Header(): JSX.Element {
   return (
     <header className="flex items-center gap-2 bg-gradient-to-r from-amber-900 to-amber-500 text-slate-50 py-10 px-8 md:px-24">
       <div>
-        <h1 className="text-amber-100 text-4xl md:text-6xl tracking-wide">
+        <h1 className="text-amber-100 text-4xl md:text-6xl">
           Ajo's Diner
         </h1>
-        <p className="text-amber-100 text-xl md:text-2xl tracking-wide">
+        <p className="text-amber-100 text-xl md:text-2xl">
           The best burgers and pizzas in town
         </p>
       </div>
@@ -36,16 +36,20 @@ export default function Header(): JSX.Element {
             aria-label="Show shopping cart"
             aria-hidden="false"
           />
-          {cartCount !== 0 &&
-            <p className={`absolute top-1 right-4 md:top-2 md:right-5 flex justify-center items-center text-amber-950 group-hover:text-amber-100 group-focus:text-amber-100 text-lg md:text-xl tracking-wider ${isAnimated ? 'scale-150' : ''}`}>
+          {cartCount !== 0 && (
+            <p
+              className={`absolute top-1 right-4 md:top-2 md:right-5 flex justify-center items-center text-amber-950 group-hover:text-amber-100 group-focus:text-amber-100 text-lg md:text-xl ${
+                isAnimated ? "scale-150" : ""
+              }`}
+            >
               {cartCount}
             </p>
-          }
+          )}
         </Link>
       ) : (
         <Link
           to="/"
-          className="ml-auto flex items-center gap-2 bg-amber-100 text-amber-950 hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50 text-lg md:text-xl p-2 border-2 border-amber-950 rounded-lg"
+          className="ml-auto flex items-center gap-2 bg-amber-100 text-amber-950 text-lg md:text-xl p-2 border-2 border-amber-950 rounded-lg hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
         >
           <FaArrowLeft />
           Menu

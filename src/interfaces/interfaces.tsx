@@ -24,4 +24,16 @@ interface AppContextProviderProps {
   children: ReactNode;
 }
 
-export type { MenuObj, AppContextData, AppContextProviderProps }
+interface FormField {
+  id: string;
+  type: string;
+  text: string;
+  autoComplete: string;
+}
+
+interface LinkProps {
+  path: string;
+  children: string | [JSX.Element, string];
+}
+
+export type { MenuObj, AppContextData, AppContextProviderProps, FormField, LinkProps }
