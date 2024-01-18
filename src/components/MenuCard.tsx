@@ -2,6 +2,7 @@ import { menuData } from "../data/menuData"
 import { AppContext } from "../context/AppContext"
 import { useContext } from "react"
 import { FaPlus, FaMinus } from "react-icons/fa6"
+import ButtonSmall from "./ButtonSmall"
 
 export default function MenuCard(): JSX.Element {
   const { itemCounts, addToCart, removeOneFromItem, addOneToItem } = useContext(AppContext)
@@ -23,21 +24,17 @@ export default function MenuCard(): JSX.Element {
         </div>
         {countForItem ? (
           <div className="ml-auto flex items-center gap-4">
-            <button
-              className="flex justify-center items-center border-2 border-amber-950 rounded-xl py-1 px-2 hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
-              aria-label="Add 1"
-              onClick={() => removeOneFromItem(item.name)}
-            >
-              <FaMinus aria-hidden="false" />
-            </button>
+            <ButtonSmall
+              itemCountFunction={() => removeOneFromItem(index)}
+              index={index}
+              children={<FaMinus aria-hidden="false" />}
+            />
             <p className="text-xl font-semibold">{countForItem}</p>
-            <button
-              className="flex justify-center items-center border-2 border-amber-950 rounded-xl py-1 px-2 hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
-              aria-label="Remove 1"
-              onClick={() => addOneToItem(item.name)}
-            >
-              <FaPlus aria-hidden="false" />
-            </button>
+            <ButtonSmall
+              itemCountFunction={() => addOneToItem(index)}
+              index={index}
+              children={<FaPlus aria-hidden="false" />}
+            />
           </div>
         ) : (
           <button

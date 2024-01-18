@@ -9,15 +9,15 @@ interface MenuObj {
 }
 
 interface AppContextData {
-  cartCount: number;
-  cartItems: MenuObj[];
-  itemCounts: {[key: string]: number};
-  addToCart: (index: number) => void;
-  removeOneFromItem: (itemName: string) => void;
-  addOneToItem: (itemName: string) => void;
-  isModalOpen: boolean;
-  openPaymentModal: () => void;
-  closePaymentModal: () => void;
+  cartCount: number
+  cartItems: MenuObj[]
+  itemCounts: { [key: string]: number }
+  addToCart: (index: number) => void
+  removeOneFromItem: (index: number) => void
+  addOneToItem: (index: number) => void
+  isModalOpen: boolean
+  openPaymentModal: () => void
+  closePaymentModal: () => void
 }
 
 interface AppContextProviderProps {
@@ -36,4 +36,10 @@ interface LinkProps {
   children: string | [JSX.Element, string];
 }
 
-export type { MenuObj, AppContextData, AppContextProviderProps, FormField, LinkProps }
+interface ButtonProps {
+  itemCountFunction: (index: number) => void;
+  index: number;
+  children: JSX.Element;
+}
+
+export type { MenuObj, AppContextData, AppContextProviderProps, FormField, LinkProps, ButtonProps }

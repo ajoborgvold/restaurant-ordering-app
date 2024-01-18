@@ -41,21 +41,25 @@ function AppContextProvider({
     !isItemInArray &&
       setCartItems((prevCartItems) => [...prevCartItems, targetItem])
 
-    addOneToItem(targetItem.name)
+    addOneToItem(index)
   }
 
-  function addOneToItem(itemName: string): void {
+  function addOneToItem(index: number): void {
+    const targetItem = menuData[index]
+
     setItemCounts((prevItemCounts) => ({
       ...prevItemCounts,
-      [itemName]: (prevItemCounts[itemName] || 0) + 1,
+      [targetItem.name]: (prevItemCounts[targetItem.name] || 0) + 1,
     }))
     setCartCount((prevCartCount) => prevCartCount + 1)
   }
 
-  function removeOneFromItem(itemName: string): void {
+  function removeOneFromItem(index: number): void {
+    const targetItem = menuData[index]
+
     setItemCounts((prevItemCounts) => ({
       ...prevItemCounts,
-      [itemName]: prevItemCounts[itemName] - 1,
+      [targetItem.name]: prevItemCounts[targetItem.name] - 1,
     }))
     setCartCount((prevCartCount) => prevCartCount - 1)
   }
