@@ -20,7 +20,7 @@ export default function Header(): JSX.Element {
   }, [cartCount])
 
   return (
-    <header className="flex items-center gap-2 bg-gradient-to-r from-amber-900 to-amber-500 text-slate-50 py-10 px-8 md:px-24">
+    <header className="flex items-center gap-2 bg-gradient-to-r from-amber-900 to-amber-500 text-slate-50 py-10 px-4 sm:px-12 md:px-24">
       <div>
         <h1 className="text-amber-100 text-4xl md:text-6xl">
           Ajo's Diner
