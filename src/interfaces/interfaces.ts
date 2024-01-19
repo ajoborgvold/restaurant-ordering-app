@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode, SyntheticEvent } from "react";
 
 interface MenuObj {
   name: string;
@@ -18,6 +18,9 @@ interface AppContextData {
   isModalOpen: boolean
   openPaymentModal: () => void
   closePaymentModal: () => void
+  formData: FormData
+  handleInputChange: (e: ChangeEvent<HTMLInputElement>, id: string) => void
+  validateFormFields: (e: SyntheticEvent<HTMLButtonElement>) => void
 }
 
 interface AppContextProviderProps {
@@ -32,6 +35,13 @@ interface FormField {
   pattern: RegExp;
 }
 
+interface FormData {
+  [key: string]: string
+  "name": string;
+  "card-number": string;
+  "ccv": string;
+}
+  
 interface LinkProps {
   path: string;
   children: string | [JSX.Element, string];
@@ -43,4 +53,4 @@ interface ButtonProps {
   children: JSX.Element;
 }
 
-export type { MenuObj, AppContextData, AppContextProviderProps, FormField, LinkProps, ButtonProps }
+export type { MenuObj, AppContextData, AppContextProviderProps, FormField, FormData, LinkProps, ButtonProps }

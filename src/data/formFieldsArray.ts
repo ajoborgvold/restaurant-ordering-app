@@ -24,4 +24,4 @@ const formFieldsArray: FormField[] = [
   },
 ]
 
-export default formFieldsArray
+export { formFieldsArray }

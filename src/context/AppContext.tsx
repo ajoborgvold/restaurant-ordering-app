@@ -1,9 +1,11 @@
-import { createContext, useEffect, useState } from "react"
+import { ChangeEvent, SyntheticEvent, createContext, useEffect, useState } from "react"
 import { menuData } from "../data/menuData"
+import { formFieldsArray } from "../data/formFieldsArray"
 import {
   AppContextData,
   AppContextProviderProps,
   MenuObj,
+  FormData,
 } from "../interfaces/interfaces"
 
 const AppContext = createContext<AppContextData>({
@@ -14,8 +16,15 @@ const AppContext = createContext<AppContextData>({
   removeOneFromItem: () => {},
   addOneToItem: () => {},
   isModalOpen: false,
-  openPaymentModal: () => { },
+  openPaymentModal: () => {},
   closePaymentModal: () => { },
+  formData: {
+    "name": "",
+    "card-number": "",
+    "ccv": ""
+  },
+  handleInputChange: () => {},
+  validateFormFields: () => {},
 })
 
 function AppContextProvider({
@@ -25,6 +34,11 @@ function AppContextProvider({
   const [cartItems, setCartItems] = useState<MenuObj[]>([])
   const [itemCounts, setItemCounts] = useState<{ [key: string]: number }>({})
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [formData, setFormData] = useState<FormData>({
+    "name": "",
+    "card-number": "",
+    "ccv": "",
+  })
 
   useEffect(() => {
     setCartItems((prevCartItems) =>
@@ -67,6 +81,19 @@ function AppContextProvider({
   function closePaymentModal() {
     setIsModalOpen(false)
   }
+  
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>, id: string) {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [id]: e.target.value
+    }))
+  }
+  
+  function validateFormFields(e: SyntheticEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    formFieldsArray.map(item => console.log(item.pattern))
+  }
+
 
   return (
     <AppContext.Provider
@@ -80,6 +107,9 @@ function AppContextProvider({
         isModalOpen,
         openPaymentModal,
         closePaymentModal,
+        formData,
+        handleInputChange,
+        validateFormFields,
       }}
     >
       {children}
