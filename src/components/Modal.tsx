@@ -1,31 +1,7 @@
 import { useContext, useEffect, useRef } from "react"
 import { AppContext } from "../context/AppContext"
 import Input from "./Input"
-import { FormField } from "../interfaces/interfaces"
-
-const formFieldsArray: FormField[] = [
-  {
-    id: "name",
-    type: "text",
-    text: "Enter your full name",
-    autoComplete: "full-name",
-    pattern: /^[A-Za-z]+$/
-  },
-  {
-    id: "card-number",
-    type: "number",
-    text: "Enter credit card number",
-    autoComplete: "credit-card-number",
-    pattern: /\d{16}/
-  },
-  {
-    id: "ccv",
-    type: "number",
-    text: "Enter credit card CCV",
-    autoComplete: "credit-card-ccv",
-    pattern: /\d{3}/
-  },
-]
+import formFieldsArray from "../data/formFieldsArray"
 
 export default function Modal(): JSX.Element {
   const { isModalOpen, closePaymentModal } = useContext(AppContext)
