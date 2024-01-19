@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext"
 import Input from "./Input"
 
 export default function Modal(): JSX.Element {
-  const { isModalOpen, closePaymentModal, validateFormFields } = useContext(AppContext)
+  const { isModalOpen, closePaymentModal, handleSubmitForm } = useContext(AppContext)
   const modalRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -34,8 +34,10 @@ export default function Modal(): JSX.Element {
       <form method="dialog" className="flex flex-col gap-8 p-8 bg-inherit">
         <Input />
         <button
+          type="submit"
+          onClick={handleSubmitForm}
+          onKeyDown={handleSubmitForm}
           className="text-lg md:text-xl p-1  border-2 border-amber-950 rounded-2xl hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
-          onClick={validateFormFields}
         >
           Pay
         </button>

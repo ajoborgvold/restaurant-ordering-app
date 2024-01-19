@@ -20,7 +20,9 @@ interface AppContextData {
   closePaymentModal: () => void
   formData: FormData
   handleInputChange: (e: ChangeEvent<HTMLInputElement>, id: string) => void
-  validateFormFields: (e: SyntheticEvent<HTMLButtonElement>) => void
+  validateUserInput: (id: string) => void
+  handleSubmitForm: (e: SyntheticEvent<HTMLButtonElement>) => void
+  
 }
 
 interface AppContextProviderProps {

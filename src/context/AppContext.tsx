@@ -1,4 +1,10 @@
-import { ChangeEvent, SyntheticEvent, createContext, useEffect, useState } from "react"
+import {
+  ChangeEvent,
+  SyntheticEvent,
+  createContext,
+  useEffect,
+  useState,
+} from "react"
 import { menuData } from "../data/menuData"
 import { formFieldsArray } from "../data/formFieldsArray"
 import {
@@ -17,14 +23,15 @@ const AppContext = createContext<AppContextData>({
   addOneToItem: () => {},
   isModalOpen: false,
   openPaymentModal: () => {},
-  closePaymentModal: () => { },
+  closePaymentModal: () => {},
   formData: {
-    "name": "",
+    name: "",
     "card-number": "",
-    "ccv": ""
+    ccv: "",
   },
   handleInputChange: () => {},
-  validateFormFields: () => {},
+  validateUserInput: () => { },
+  handleSubmitForm: () => {}
 })
 
 function AppContextProvider({
@@ -35,10 +42,16 @@ function AppContextProvider({
   const [itemCounts, setItemCounts] = useState<{ [key: string]: number }>({})
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [formData, setFormData] = useState<FormData>({
-    "name": "",
+    name: "",
     "card-number": "",
-    "ccv": "",
+    ccv: "",
   })
+  // const [inputError, setInputError] = useState(false)
+  // const [errorMessage, setErrorMessage] = useState({
+  //   name: "",
+  //   "card-number": "",
+  //   ccv: ""
+  // })
 
   useEffect(() => {
     setCartItems((prevCartItems) =>
@@ -81,19 +94,44 @@ function AppContextProvider({
   function closePaymentModal() {
     setIsModalOpen(false)
   }
-  
+
   function handleInputChange(e: ChangeEvent<HTMLInputElement>, id: string) {
-    setFormData(prevFormData => ({
+    setFormData((prevFormData) => ({
       ...prevFormData,
-      [id]: e.target.value
+      [id]: e.target.value,
     }))
   }
-  
-  function validateFormFields(e: SyntheticEvent<HTMLButtonElement>) {
-    e.preventDefault()
-    formFieldsArray.map(item => console.log(item.pattern))
-  }
 
+  function validateUserInput(id: string) {
+    const targetInput = formFieldsArray.find(item => item.id === id)
+
+    if (targetInput) {
+      const isValid = new RegExp(targetInput.pattern).test(formData[id])
+
+      if (!isValid) {
+        // setErrorMessage(prevErrorMessage => ({...prevErrorMessage, targetInput: "Error"}))
+
+        console.log("Invalid input")
+      }
+    }
+
+  }
+  
+  function handleSubmitForm(e: SyntheticEvent<HTMLButtonElement>) {
+    e.preventDefault()
+
+    if (e.type === "click" || e.type === "keydown" && (e as React.KeyboardEvent<HTMLButtonElement>).keyCode === 13) {
+      const isValid = formFieldsArray.every((item) =>
+        new RegExp(item.pattern).test(formData[item.id])
+      )
+    
+      if (isValid) {
+        setIsModalOpen(false)
+      } else {
+        console.log("Invalid inputs")
+      }
+    }
+  }
 
   return (
     <AppContext.Provider
@@ -109,7 +147,9 @@ function AppContextProvider({
         closePaymentModal,
         formData,
         handleInputChange,
-        validateFormFields,
+        validateUserInput,
+        handleSubmitForm,
+        // errorMessage
       }}
     >
       {children}
