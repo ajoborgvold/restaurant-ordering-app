@@ -49,7 +49,7 @@ export default function Modal(): JSX.Element {
       ref={modalRef}
       onClick={closeModalOnClickOutside}
       onCancel={closePaymentModal}
-      className="w-96 bg-amber-100 text-amber-950 text-xl py-6"
+      className="w-96 bg-amber-100 text-amber-950 font-sans py-6"
     >
       <form method="dialog" className="flex flex-col gap-12 p-8 bg-inherit">
         <Input />
