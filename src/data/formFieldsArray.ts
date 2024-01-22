@@ -6,8 +6,8 @@ const formFieldsArray: FormField[] = [
     type: "text",
     text: "Enter your full name",
     autoComplete: "name",
-    pattern: /^[A-Za-z]+$/,
-    errorMessage: "Only alphabetic characters allowed"
+    pattern: /^\s*[A-Za-z]+\s*(?: [A-Za-z]+\s*)*$/,
+    errorMessage: "Only alphabetic characters allowed",
   },
   {
     id: "card-number",
@@ -15,7 +15,7 @@ const formFieldsArray: FormField[] = [
     text: "Enter credit card number",
     autoComplete: "cc-number",
     pattern: /\d{16}/,
-    errorMessage: "Please enter a 16 digit card number"
+    errorMessage: "Please enter a 16 digit card number",
   },
   {
     id: "ccv",
@@ -23,7 +23,7 @@ const formFieldsArray: FormField[] = [
     text: "Enter credit card CCV",
     autoComplete: "cc-csc",
     pattern: /\d{3}/,
-    errorMessage: "Please enter a 3 digit CCV"
+    errorMessage: "Please enter a 3 digit CCV",
   },
 ]
 
