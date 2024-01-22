@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, SyntheticEvent } from "react";
+import { ChangeEvent, ReactNode, MouseEvent, KeyboardEvent } from "react";
 
 interface MenuObj {
   name: string;
@@ -20,9 +20,9 @@ interface AppContextData {
   closePaymentModal: () => void
   formData: FormData
   handleInputChange: (e: ChangeEvent<HTMLInputElement>, id: string) => void
-  validateUserInput: (id: string) => void
-  handleSubmitForm: (e: SyntheticEvent<HTMLButtonElement>) => void
-  
+  validFormInputs: {[key: string]: boolean}
+  handleFormButtonClick: (e: MouseEvent<HTMLButtonElement>) => void
+  handleFormButtonKeyPress: (e: KeyboardEvent<HTMLButtonElement>) => void
 }
 
 interface AppContextProviderProps {
@@ -35,6 +35,7 @@ interface FormField {
   text: string;
   autoComplete: string;
   pattern: RegExp;
+  errorMessage: string;
 }
 
 interface FormData {

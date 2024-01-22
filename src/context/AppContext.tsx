@@ -1,6 +1,7 @@
 import {
   ChangeEvent,
-  SyntheticEvent,
+  KeyboardEvent,
+  MouseEvent,
   createContext,
   useEffect,
   useState,
@@ -30,8 +31,9 @@ const AppContext = createContext<AppContextData>({
     ccv: "",
   },
   handleInputChange: () => {},
-  validateUserInput: () => { },
-  handleSubmitForm: () => {}
+  validFormInputs: {},
+  handleFormButtonClick: () => {},
+  handleFormButtonKeyPress: () => {},
 })
 
 function AppContextProvider({
@@ -46,12 +48,11 @@ function AppContextProvider({
     "card-number": "",
     ccv: "",
   })
-  // const [inputError, setInputError] = useState(false)
-  // const [errorMessage, setErrorMessage] = useState({
-  //   name: "",
-  //   "card-number": "",
-  //   ccv: ""
-  // })
+  const [validFormInputs, setValidFormInputs] = useState({
+    name: false,
+    "card-number": false,
+    ccv: false
+  })
 
   useEffect(() => {
     setCartItems((prevCartItems) =>
@@ -100,36 +101,46 @@ function AppContextProvider({
       ...prevFormData,
       [id]: e.target.value,
     }))
+    validateUserInput(id, e.target.value)
   }
 
-  function validateUserInput(id: string) {
-    const targetInput = formFieldsArray.find(item => item.id === id)
+  function validateUserInput(id: string, inputValue: string) {
+    const targetInput = formFieldsArray.find((item) => item.id === id)
 
     if (targetInput) {
-      const isValid = new RegExp(targetInput.pattern).test(formData[id])
-
-      if (!isValid) {
-        // setErrorMessage(prevErrorMessage => ({...prevErrorMessage, targetInput: "Error"}))
-
-        console.log("Invalid input")
-      }
+      const isValid = new RegExp(targetInput.pattern).test(inputValue)
+        setValidFormInputs((prevValidFormInputs) => ({
+          ...prevValidFormInputs,
+          [id]: isValid,
+        }))
+        console.log(
+          "Invalid input. Input does not match the pattern defined in formFieldsArray."
+        )
     }
-
   }
-  
-  function handleSubmitForm(e: SyntheticEvent<HTMLButtonElement>) {
-    e.preventDefault()
 
-    if (e.type === "click" || e.type === "keydown" && (e as React.KeyboardEvent<HTMLButtonElement>).keyCode === 13) {
-      const isValid = formFieldsArray.every((item) =>
-        new RegExp(item.pattern).test(formData[item.id])
-      )
-    
-      if (isValid) {
-        setIsModalOpen(false)
-      } else {
-        console.log("Invalid inputs")
-      }
+  function handleFormButtonClick(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    handleSubmitForm()
+  }
+
+  function handleFormButtonKeyPress(e: KeyboardEvent<HTMLButtonElement>) {
+    if (e.key === "Enter") {
+      handleSubmitForm()
+    }
+  }
+
+  function handleSubmitForm() {
+    const isValid = formFieldsArray.every((item) =>
+      new RegExp(item.pattern).test(formData[item.id])
+    )
+
+    if (isValid) {
+      setIsModalOpen(false)
+      console.log(formData.name)
+    } else {
+      setIsModalOpen(true)
+      console.log("Invalid inputs")
     }
   }
 
@@ -147,9 +158,9 @@ function AppContextProvider({
         closePaymentModal,
         formData,
         handleInputChange,
-        validateUserInput,
-        handleSubmitForm,
-        // errorMessage
+        validFormInputs,
+        handleFormButtonClick,
+        handleFormButtonKeyPress,
       }}
     >
       {children}
