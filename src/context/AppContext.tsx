@@ -34,6 +34,8 @@ const AppContext = createContext<AppContextData>({
   validFormInputs: {},
   handleFormButtonClick: () => {},
   handleFormButtonKeyPress: () => {},
+  isOrderCompleted: false,
+  resetCart: () => {},
 })
 
 function AppContextProvider({
@@ -51,8 +53,22 @@ function AppContextProvider({
   const [validFormInputs, setValidFormInputs] = useState({
     name: false,
     "card-number": false,
-    ccv: false
+    ccv: false,
   })
+  const [isOrderCompleted, setIsOrderCompleted] = useState(false)
+  const [isCartReset, setIsCartReset] = useState(false)
+
+  useEffect(() => {
+    if (isCartReset) {
+      setCartCount(0)
+      setCartItems([])
+      setItemCounts({})
+      setIsModalOpen(false)
+      setFormData({ name: "", "card-number": "", ccv: "" })
+      setValidFormInputs({ name: false, "card-number": false, ccv: false })
+      setIsCartReset(false)
+    }
+  }, [isCartReset])
 
   useEffect(() => {
     setCartItems((prevCartItems) =>
@@ -109,13 +125,13 @@ function AppContextProvider({
 
     if (targetInput) {
       const isValid = new RegExp(targetInput.pattern).test(inputValue)
-        setValidFormInputs((prevValidFormInputs) => ({
-          ...prevValidFormInputs,
-          [id]: isValid,
-        }))
-        console.log(
-          "Invalid input. Input does not match the pattern defined in formFieldsArray."
-        )
+      setValidFormInputs((prevValidFormInputs) => ({
+        ...prevValidFormInputs,
+        [id]: isValid,
+      }))
+      console.log(
+        "Invalid input. Input does not match the pattern defined in formFieldsArray."
+      )
     }
   }
 
@@ -137,11 +153,16 @@ function AppContextProvider({
 
     if (isValid) {
       setIsModalOpen(false)
+      setIsOrderCompleted(true)
       console.log(formData.name)
     } else {
       setIsModalOpen(true)
       console.log("Invalid inputs")
     }
+  }
+
+  function resetCart() {
+    setIsCartReset(true)
   }
 
   return (
@@ -161,6 +182,8 @@ function AppContextProvider({
         validFormInputs,
         handleFormButtonClick,
         handleFormButtonKeyPress,
+        isOrderCompleted,
+        resetCart,
       }}
     >
       {children}

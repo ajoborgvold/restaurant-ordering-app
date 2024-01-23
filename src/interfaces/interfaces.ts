@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, MouseEvent, KeyboardEvent } from "react";
+import { ChangeEvent, ReactNode, MouseEvent, KeyboardEvent, ReactEventHandler } from "react";
 
 interface MenuObj {
   name: string;
@@ -23,6 +23,8 @@ interface AppContextData {
   validFormInputs: {[key: string]: boolean}
   handleFormButtonClick: (e: MouseEvent<HTMLButtonElement>) => void
   handleFormButtonKeyPress: (e: KeyboardEvent<HTMLButtonElement>) => void
+  isOrderCompleted: boolean
+  resetCart: () => void
 }
 
 interface AppContextProviderProps {
@@ -48,6 +50,7 @@ interface FormData {
 interface LinkProps {
   path: string;
   children: string | [JSX.Element, string];
+  onClick?: ReactEventHandler<HTMLAnchorElement>;
 }
 
 interface ButtonProps {

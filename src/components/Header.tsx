@@ -5,7 +5,7 @@ import { FaShoppingCart } from "react-icons/fa"
 import { FaArrowLeft } from "react-icons/fa6"
 
 export default function Header(): JSX.Element {
-  const { cartCount } = useContext(AppContext)
+  const { cartCount, isOrderCompleted, resetCart } = useContext(AppContext)
   const [isAnimated, setIsAnimated] = useState(false)
   const location = useLocation()
 
@@ -49,7 +49,8 @@ export default function Header(): JSX.Element {
       ) : (
         <Link
           to="/"
-          className="ml-auto flex items-center gap-2 bg-amber-100 text-amber-950 text-lg md:text-xl p-2 border-2 border-amber-950 rounded-lg hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
+            className="ml-auto flex items-center gap-2 bg-amber-100 text-amber-950 text-lg md:text-xl p-2 border-2 border-amber-950 rounded-lg hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
+            onClick={() => isOrderCompleted && resetCart()}
         >
           <FaArrowLeft />
           Menu

@@ -5,14 +5,23 @@ import Modal from "../components/Modal"
 import RouteLink from "../components/RouteLink"
 
 export default function Order(): JSX.Element {
-  const { cartItems, itemCounts, openPaymentModal, isModalOpen } =
-    useContext(AppContext)
+  const {
+    formData,
+    cartItems,
+    itemCounts,
+    openPaymentModal,
+    isModalOpen,
+    isOrderCompleted,
+    resetCart
+  } = useContext(AppContext)
 
   const totalPrice = cartItems
     .map((item) => item.price * itemCounts[item.name])
     .reduce((prev, current) => {
       return prev + current
     }, 0)
+
+  const userFirstName = formData.name.trim().split(" ")[0]
 
   return (
     <>
@@ -26,12 +35,21 @@ export default function Order(): JSX.Element {
                 <p>Total price:</p>
                 <p>$ {totalPrice}</p>
               </div>
-              <button
-                className="mt-12 text-2xl md:text-3xl p-4  border-2 border-amber-950 rounded-2xl hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
-                onClick={openPaymentModal}
-              >
-                Complete order
-              </button>
+              {!isOrderCompleted ? (
+                <button
+                  className="mt-12 text-2xl md:text-3xl p-4  border-2 border-amber-950 rounded-2xl hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
+                  onClick={openPaymentModal}
+                >
+                  Complete order
+                </button>
+              ) : (
+                <div className="self-center mt-14 flex flex-col gap-4">
+                  <p className="bg-amber-700 text-amber-50 text-3xl py-4 px-8 rounded-2xl">
+                    Thanks {userFirstName}, your order is on its way!
+                    </p>
+                    <RouteLink path="/" children="Place new order" onClick={resetCart} />
+                </div>
+              )}
             </section>
           </>
         ) : (
