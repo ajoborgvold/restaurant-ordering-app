@@ -67,6 +67,7 @@ function AppContextProvider({
       setFormData({ name: "", "card-number": "", ccv: "" })
       setValidFormInputs({ name: false, "card-number": false, ccv: false })
       setIsCartReset(false)
+      setIsOrderCompleted(false)
     }
   }, [isCartReset])
 

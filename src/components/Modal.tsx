@@ -49,7 +49,7 @@ export default function Modal(): JSX.Element {
       ref={modalRef}
       onClick={closeModalOnClickOutside}
       onCancel={closePaymentModal}
-      className="w-96 bg-amber-100 text-amber-950 font-sans py-6"
+      className="w-96 bg-amber-100 dark:bg-slate-400 text-amber-950 dark:text-slate-950 font-sans py-6"
     >
       <form method="dialog" className="flex flex-col gap-12 p-8 bg-inherit">
         <Input />
@@ -58,7 +58,7 @@ export default function Modal(): JSX.Element {
           onClick={handleFormButtonClick}
           onKeyDown={handleFormButtonKeyPress}
           disabled={isDisabled}
-          className="text-lg md:text-xl p-1 border-2 border-amber-950 rounded-2xl disabled:bg-slate-300 disabled:border-slate-500 disabled:text-slate-500 enabled:hover:bg-gradient-to-r enabled:focus:bg-gradient-to-r from-amber-950 to-amber-700 enabled:hover:text-amber-50 enabled:focus:text-amber-50"
+          className="text-lg md:text-xl p-1 border-2 border-amber-950 dark:border-slate-950 rounded-2xl disabled:bg-slate-300 disabled:border-slate-500 disabled:text-slate-500 dark:enabled:bg-slate-100 enabled:hover:bg-gradient-to-r enabled:focus:bg-gradient-to-r from-amber-950 dark:from-slate-950 to-amber-700 dark:to-slate-600 enabled:hover:text-amber-50 enabled:focus:text-amber-50 dark:enabled:hover:text-slate-50 dark:enabled:focus:text-slate-50"
         >
           Pay
         </button>

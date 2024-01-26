@@ -12,7 +12,7 @@ export default function OrderCard(): JSX.Element {
     return (
       <div
         key={item.name}
-        className="grid grid-cols-3 gap-8 odd:bg-amber-200 even:bg-amber-100 p-4 first:rounded-t last:rounded-b"
+        className="grid grid-cols-3 gap-8 odd:bg-amber-200 dark:odd:bg-slate-700 even:bg-amber-100 dark:even:bg-slate-800 dark:text-slate-50 p-4 first:rounded-t last:rounded-b"
       >
         <p className="font-semibold text-xl md:text-2xl">{item.name}</p>
         <div className="flex gap-4 text-lg md:text-xl">

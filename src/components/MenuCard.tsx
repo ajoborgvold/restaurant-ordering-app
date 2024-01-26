@@ -13,7 +13,7 @@ export default function MenuCard(): JSX.Element {
     return (
       <div
         key={index}
-        className="w-full flex items-center gap-3 md:gap-6 border-b border-amber-200 last:border-none py-6"
+        className="w-full flex items-center gap-3 md:gap-6 border-b border-amber-200 dark:border-slate-800 last:border-none py-6"
       >
         <div className="flex flex-col gap-1">
           <h3 className="text-2xl md:text-3xl capitalize font-semibold tracking-wide">
@@ -38,13 +38,13 @@ export default function MenuCard(): JSX.Element {
           </div>
         ) : (
           <button
-            className="ml-auto text-xl md:text-2xl font-semibold tracking-wider border-2 border-amber-950 rounded-lg py-2 px-8 hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 to-amber-700 hover:text-amber-50 focus:text-amber-50"
+            className="ml-auto text-xl md:text-2xl font-semibold tracking-wider border-2 border-amber-950 dark:border-slate-300 rounded-lg py-2 px-8 hover:bg-gradient-to-r focus:bg-gradient-to-r from-amber-950 dark:from-slate-500 to-amber-700 dark:to-slate-300 hover:text-amber-50 focus:text-amber-50 dark:hover:text-slate-950 dark:focus:text-slate-950"
             onClick={() => addToCart(index)}
           >
             Add
           </button>
         )}
-        <div className="order-first flex items-center text-7xl md:text-8xl">
+        <div className="order-first flex items-center text-7xl md:text-8xl dark:opacity-80">
           {item.image}
         </div>
       </div>
