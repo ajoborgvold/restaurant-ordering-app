@@ -28,10 +28,10 @@ export default function Order(): JSX.Element {
       <main className="flex-1 flex flex-col gap-8 items-center py-8">
         {cartItems.length ? (
           <>
-            <h2 className="text-4xl font-semibold">Your order</h2>
-            <section className="sm:w-2/3 lg:w-1/2 flex flex-col px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">Your order</h2>
+            <section className="w-full sm:w-3/4 lg:w-1/2 flex flex-col px-8">
               <OrderCard />
-              <div className="mt-8 flex justify-between bg-amber-300 dark:bg-slate-600 text-amber-950 dark:text-slate-50 text-2xl md:text-3xl p-4 rounded">
+              <div className="mt-8 flex justify-between bg-amber-300 dark:bg-slate-600 text-amber-950 dark:text-slate-50 text-xl sm:text-2xl md:text-3xl p-4 rounded">
                 <p>Total price:</p>
                 <p>$ {totalPrice}</p>
               </div>
@@ -44,7 +44,7 @@ export default function Order(): JSX.Element {
                 </button>
               ) : (
                 <div className="self-center mt-14 flex flex-col gap-4">
-                  <p className="bg-amber-700 dark:bg-slate-400 text-amber-50 dark:text-slate-950 text-3xl py-4 px-8 rounded-2xl">
+                  <p className="bg-amber-700 dark:bg-slate-400 text-amber-50 dark:text-slate-950 text-xl sm:text-2xl md:text-3xl text-center py-2 px-4 md:py-4 md:px-8 rounded-2xl">
                     Thanks {userFirstName}, your order is on its way!
                   </p>
                   <RouteLink

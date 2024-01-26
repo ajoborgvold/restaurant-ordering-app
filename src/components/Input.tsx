@@ -34,8 +34,8 @@ export default function Input(): JSX.Element {
               <>
                 <div className="absolute h-8 -top-8 right-0 bottom-0 left-0 flex items-center bg-amber-800 dark:bg-slate-900 text-amber-50 dark:text-slate-50 px-4 rounded shadow-lg shadow-amber-400 dark:shadow-slate-500" id={`${item.id}-error-message`}>
                   <div className="relative">
-                    <p>{item.errorMessage}</p>
-                    <div className="absolute w-0 h-0 left-0 border-l-[12px] border-l-transparent border-t-[12px] border-t-amber-800 dark:border-t-slate-900 border-r-[12px] border-r-transparent"></div>
+                    <p className="text-xs sm:text-sm">{item.errorMessage}</p>
+                    <div className="absolute w-0 h-0 left-0 border-l-[15px] border-l-transparent border-t-[15px] border-t-amber-800 dark:border-t-slate-900 border-r-[15px] border-r-transparent"></div>
                   </div>
                 </div>
               </>
