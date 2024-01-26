@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, MouseEvent, KeyboardEvent, ReactEventHandler } from "react";
+import { ChangeEvent, ReactNode, MouseEvent, KeyboardEvent, ReactEventHandler, FocusEvent } from "react";
 
 interface MenuObj {
   name: string;
@@ -20,7 +20,9 @@ interface AppContextData {
   closePaymentModal: () => void
   formData: FormData
   handleInputChange: (e: ChangeEvent<HTMLInputElement>, id: string) => void
-  validFormInputs: {[key: string]: boolean}
+  isInputFocused: { [key: string]: boolean }
+  handleEmptyInput: (e: FocusEvent<HTMLInputElement>, id: string) => void
+  validFormInputs: { [key: string]: boolean }
   handleFormButtonClick: (e: MouseEvent<HTMLButtonElement>) => void
   handleFormButtonKeyPress: (e: KeyboardEvent<HTMLButtonElement>) => void
   isOrderCompleted: boolean

@@ -1,11 +1,10 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { AppContext } from "../context/AppContext"
 import { formFieldsArray } from "../data/formFieldsArray"
 
 export default function Input(): JSX.Element {
-  const { formData, handleInputChange, validFormInputs } =
+  const { formData, handleInputChange, isInputFocused, handleEmptyInput, validFormInputs } =
     useContext(AppContext)
-  const [isFocused, setIsFocused] = useState<string>("null")
 
   return (
     <>
@@ -22,16 +21,15 @@ export default function Input(): JSX.Element {
             autoComplete={item.autoComplete}
             pattern={item.pattern.source}
             onChange={(e) => handleInputChange(e, item.id)}
-            onBlur={() => {
-              setIsFocused("")
+            onBlur={(e) => {
+              handleEmptyInput(e, item.id)
             }}
-            onFocus={() => setIsFocused(item.id)}
             value={formData[item.id]}
             className="w-full bg-amber-50 dark:bg-slate-50 text-amber-950 dark:text-slate-950 tracking-wider py-2 px-4 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             aria-describedby={`${item.id}-error-message`}
           ></input>
-          {isFocused !== item.id &&
-            formData[item.id] &&
+          {
+            isInputFocused[item.id] &&
             !validFormInputs[item.id] && (
               <>
                 <div className="absolute h-8 -top-8 right-0 bottom-0 left-0 flex items-center bg-amber-800 dark:bg-slate-900 text-amber-50 dark:text-slate-50 px-4 rounded shadow-lg shadow-amber-400 dark:shadow-slate-500" id={`${item.id}-error-message`}>

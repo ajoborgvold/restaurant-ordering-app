@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   KeyboardEvent,
   MouseEvent,
+  FocusEvent,
   createContext,
   useEffect,
   useState,
@@ -19,18 +20,20 @@ const AppContext = createContext<AppContextData>({
   cartCount: 0,
   cartItems: [],
   itemCounts: {},
-  addToCart: () => {},
-  removeOneFromItem: () => {},
-  addOneToItem: () => {},
+  addToCart: () => { },
+  removeOneFromItem: () => { },
+  addOneToItem: () => { },
   isModalOpen: false,
-  openPaymentModal: () => {},
-  closePaymentModal: () => {},
+  openPaymentModal: () => { },
+  closePaymentModal: () => { },
   formData: {
     name: "",
     "card-number": "",
     ccv: "",
   },
-  handleInputChange: () => {},
+  handleInputChange: () => { },
+  isInputFocused: {},
+  handleEmptyInput: () => {},
   validFormInputs: {},
   handleFormButtonClick: () => {},
   handleFormButtonKeyPress: () => {},
@@ -55,6 +58,9 @@ function AppContextProvider({
     "card-number": false,
     ccv: false,
   })
+  const [isInputFocused, setIsInputFocused] = useState<{
+    [key: string]: boolean
+  }>({})
   const [isOrderCompleted, setIsOrderCompleted] = useState(false)
   const [isCartReset, setIsCartReset] = useState(false)
 
@@ -76,6 +82,10 @@ function AppContextProvider({
       prevCartItems.filter((item) => itemCounts[item.name] !== 0)
     )
   }, [itemCounts])
+
+  useEffect(() => {
+    setIsInputFocused({})
+  }, [formData])
 
   function addToCart(index: number): void {
     const targetItem = menuData[index]
@@ -119,6 +129,17 @@ function AppContextProvider({
       [id]: e.target.value,
     }))
     validateUserInput(id, e.target.value)
+  }
+
+  function handleEmptyInput(e: FocusEvent<HTMLInputElement>, id: string) {
+    setIsInputFocused((prevIsInputFocused) => ({
+      ...prevIsInputFocused,
+      [id]: true,
+    }))
+
+    if (!e.target.value) {
+      validateUserInput(id, "")
+    }
   }
 
   function validateUserInput(id: string, inputValue: string) {
@@ -180,6 +201,8 @@ function AppContextProvider({
         closePaymentModal,
         formData,
         handleInputChange,
+        isInputFocused,
+        handleEmptyInput,
         validFormInputs,
         handleFormButtonClick,
         handleFormButtonKeyPress,
