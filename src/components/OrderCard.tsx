@@ -10,7 +10,7 @@ export default function OrderCard(): JSX.Element {
     const itemPrice = itemQuantity * item.price
 
     return (
-      <div
+      <li
         key={item.name}
         className="grid grid-cols-3 gap-8 odd:bg-amber-200 dark:odd:bg-slate-700 even:bg-amber-100 dark:even:bg-slate-800 dark:text-slate-50 p-4 first:rounded-t last:rounded-b"
       >
@@ -20,9 +20,9 @@ export default function OrderCard(): JSX.Element {
           <p>{itemQuantity}</p>
         </div>
         <p className="ml-auto text-lg sm:text-xl md:text-2xl">$ {itemPrice}</p>
-      </div>
+      </li>
     )
   })
 
-  return <>{orderCardEl}</>
+  return <ul>{orderCardEl}</ul>
 }

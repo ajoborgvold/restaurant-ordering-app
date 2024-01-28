@@ -31,7 +31,7 @@ export default function Order(): JSX.Element {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">Your order</h2>
             <section className="w-full sm:w-3/4 lg:w-1/2 flex flex-col px-8">
               <OrderCard />
-              <div className="mt-8 flex justify-between bg-amber-300 dark:bg-slate-600 text-amber-950 dark:text-slate-50 text-xl sm:text-2xl md:text-3xl p-4 rounded">
+              <div className="mt-8 flex justify-between bg-amber-300 dark:bg-slate-400 text-amber-950 dark:text-slate-950 text-xl font-semibold sm:text-2xl md:text-3xl p-4 rounded">
                 <p>Total price:</p>
                 <p>$ {totalPrice}</p>
               </div>

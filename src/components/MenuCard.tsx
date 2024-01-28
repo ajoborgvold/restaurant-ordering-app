@@ -11,7 +11,7 @@ export default function MenuCard(): JSX.Element {
     const countForItem = itemCounts[item.name] || 0
 
     return (
-      <div
+      <li
         key={index}
         className="w-full flex items-center gap-3 md:gap-6 border-b border-amber-200 dark:border-slate-800 last:border-none py-6"
       >
@@ -28,12 +28,14 @@ export default function MenuCard(): JSX.Element {
               handleClick={() => removeOneFromItem(item.name)}
               targetItem={item.name}
               children={<FaMinus aria-hidden="false" />}
+              aria="Remove 1"
             />
             <p className="text-xl font-semibold">{countForItem}</p>
             <ButtonSmall
               handleClick={() => addOneToItem(item.name)}
               targetItem={item.name}
               children={<FaPlus aria-hidden="false" />}
+              aria="Add 1"
             />
           </div>
         ) : (
@@ -47,9 +49,9 @@ export default function MenuCard(): JSX.Element {
         <div className="order-first flex items-center text-7xl md:text-8xl dark:opacity-80">
           {item.image}
         </div>
-      </div>
+      </li>
     )
   })
 
-  return <>{menuCardEl}</>
+  return <ul>{menuCardEl}</ul>
 }

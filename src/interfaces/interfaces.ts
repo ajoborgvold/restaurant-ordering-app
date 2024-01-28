@@ -36,7 +36,8 @@ interface AppContextProviderProps {
 interface FormField {
   id: string;
   type: string;
-  text: string;
+  label: string;
+  placeholder: string;
   autoComplete: string;
   pattern: RegExp;
   errorMessage: string;
@@ -59,6 +60,7 @@ interface ButtonProps {
   handleClick: (targetItem: string) => void;
   targetItem: string;
   children: JSX.Element;
+  aria: string;
 }
 
 export type { MenuObj, AppContextData, AppContextProviderProps, FormField, FormData, LinkProps, ButtonProps }
