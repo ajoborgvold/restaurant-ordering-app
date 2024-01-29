@@ -5,7 +5,7 @@ interface MenuObj {
   price: number;
   image: string;
   ingredients: string[];
-  isBeverage: boolean;
+  isMealDeal: boolean;
 }
 
 interface AppContextData {

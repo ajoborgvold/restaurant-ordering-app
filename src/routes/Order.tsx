@@ -21,6 +21,66 @@ export default function Order(): JSX.Element {
       return prev + current
     }, 0)
 
+  const { mealDealCount, totalDiscount } = countMealDealsAndDiscount()
+
+  function countMealDealsAndDiscount() {
+    if (!cartItems.length) { return {mealDealCount: 0, totalDiscount: 0}}
+
+    const mealDealLimit = 3
+    const discountPct = 15
+    let mealDealCount = 0
+    let totalDiscount = 0
+
+    const beer = cartItems.find(item => item.name === "Beer") ?? {price: 0}
+    const fries = cartItems.find(item => item.name === "French fries") ?? {price: 0}
+    const hamburger = cartItems.find(item => item.name === "Hamburger") ?? {price: 0}
+    const pizza = cartItems.find(item => item.name === "Pizza") ?? {price: 0}
+
+    const potentialMealDeals = Math.min(
+      itemCounts.Beer,
+      itemCounts["French fries"],
+      itemCounts.Pizza + itemCounts.Hamburger
+    )
+
+    let remainingBeer = itemCounts.Beer
+    let remainingFries = itemCounts["French fries"]
+    let remainingHamburger = itemCounts.Hamburger
+    let remainingPizza = itemCounts.Pizza
+
+    for (let i = 0; i < potentialMealDeals; i++) {
+      if (mealDealCount >= mealDealLimit) {break}
+
+      if (
+        remainingBeer >= 1 &&
+        remainingFries >= 1 &&
+        remainingHamburger >= 1
+      ) {
+        remainingBeer--
+        remainingFries--
+        remainingHamburger--
+
+        mealDealCount++
+        totalDiscount += (beer.price + fries.price + hamburger.price) * discountPct / 100
+      } else if (
+        remainingBeer >= 1 &&
+        remainingFries >= 1 &&
+        remainingPizza >= 1
+      ) {
+        remainingBeer--
+        remainingFries--
+        remainingPizza--
+
+        mealDealCount++
+        totalDiscount +=
+          ((beer.price + fries.price + pizza.price) * discountPct) / 100
+      }
+    }
+
+    totalDiscount = parseFloat(totalDiscount.toFixed(2))
+
+    return { mealDealCount, totalDiscount }
+  }
+  
   const userFirstName = formData.name.trim().split(" ")[0]
 
   return (
@@ -28,12 +88,22 @@ export default function Order(): JSX.Element {
       <main className="flex-1 flex flex-col gap-8 items-center py-8">
         {cartItems.length ? (
           <>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">Your order</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
+              Your order
+            </h2>
             <section className="w-full sm:w-3/4 lg:w-1/2 flex flex-col px-8">
               <OrderCard />
-              <div className="mt-8 flex justify-between bg-amber-300 dark:bg-slate-400 text-amber-950 dark:text-slate-950 text-xl font-semibold sm:text-2xl md:text-3xl p-4 rounded">
-                <p>Total price:</p>
-                <p>$ {totalPrice}</p>
+              <div className="mt-8 flex flex-col bg-amber-300 dark:bg-slate-400 text-amber-950 dark:text-slate-950 text-xl  p-4 rounded">
+                {mealDealCount > 0 && (
+                  <div className="w-full flex justify-between">
+                    <p>Meal deal discount x {mealDealCount}</p>
+                    <p>-$ {totalDiscount}</p>
+                  </div>
+                )}
+                <div className="w-full flex justify-between font-semibold sm:text-2xl md:text-3xl">
+                  <p>Total price:</p>
+                  <p>$ {mealDealCount ? totalPrice - totalDiscount : totalPrice}</p>
+                </div>
               </div>
               {!isOrderCompleted ? (
                 <button
