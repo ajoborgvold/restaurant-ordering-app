@@ -128,7 +128,7 @@ export default function Order(): JSX.Element {
           </>
         ) : (
           <>
-            <h2 className="text-4xl font-semibold">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl text-center font-semibold px-4">
               Your shopping cart is empty
             </h2>
             <RouteLink path="/" children="Return to menu" />
