@@ -41,12 +41,12 @@ The payment modal is created using the native HTML `dialog element`, and this im
 
 ### New technologies
 This is the first ever project that I have built using Tailwind CSS and TypeScript. Along the way, I have learned how to work with a whole lot of new things.
-Tailwind CSS:
+#### Tailwind CSS:
 1. Installing and configuring Tailwind
 2. Editing/updating `tailwind.config.js`
 3. The Tailwind units
 4. Various modifiers for e.g.: responsive breakpoints, `hover`/`focus`, `odd`/`even`, `group`, `dark`
-TypeScript:
+#### TypeScript:
 1. Various types: primitive, arrays, objects, JSX elements, various event types
 2. Interfaces
 3. TS in combination with both the React Context API and React props
