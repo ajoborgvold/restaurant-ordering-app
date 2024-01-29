@@ -36,16 +36,16 @@ export default function Order(): JSX.Element {
     const hamburger = cartItems.find(item => item.name === "Hamburger") ?? {price: 0}
     const pizza = cartItems.find(item => item.name === "Pizza") ?? {price: 0}
 
-    const potentialMealDeals = Math.min(
-      itemCounts.Beer,
-      itemCounts["French fries"],
-      itemCounts.Pizza + itemCounts.Hamburger
-    )
+    let remainingBeer = itemCounts.Beer ?? 0
+    let remainingFries = itemCounts["French fries"] ?? 0
+    let remainingHamburger = itemCounts.Hamburger ?? 0
+    let remainingPizza = itemCounts.Pizza ?? 0
 
-    let remainingBeer = itemCounts.Beer
-    let remainingFries = itemCounts["French fries"]
-    let remainingHamburger = itemCounts.Hamburger
-    let remainingPizza = itemCounts.Pizza
+    const potentialMealDeals = Math.min(
+      remainingBeer,
+      remainingFries,
+      remainingPizza + remainingHamburger
+    )
 
     for (let i = 0; i < potentialMealDeals; i++) {
       if (mealDealCount >= mealDealLimit) {break}
@@ -102,7 +102,7 @@ export default function Order(): JSX.Element {
                 )}
                 <div className="w-full flex justify-between font-semibold sm:text-2xl md:text-3xl">
                   <p>Total price:</p>
-                  <p>$ {mealDealCount ? totalPrice - totalDiscount : totalPrice}</p>
+                  <p>$ {totalPrice - totalDiscount}</p>
                 </div>
               </div>
               {!isOrderCompleted ? (

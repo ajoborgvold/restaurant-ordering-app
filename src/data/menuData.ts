@@ -24,21 +24,21 @@ const menuData: MenuObj[] = [
   },
   {
     name: "Beer",
-    price: 12,
+    price: 9,
     image: "🍺",
     ingredients: ["grain, hops, yeast, water"],
     isMealDeal: true,
   },
   {
     name: "Coffee",
-    price: 8,
+    price: 5,
     image: "☕️",
     ingredients: ["water", "coffee beans"],
     isMealDeal: false,
   },
   {
     name: "Croissant",
-    price: 7,
+    price: 4,
     image: "🥐",
     ingredients: [
       "vegan butter",
