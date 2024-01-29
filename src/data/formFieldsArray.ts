@@ -17,7 +17,7 @@ const formFieldsArray: FormField[] = [
     placeholder: "1234123412341234",
     autoComplete: "cc-number",
     pattern: /\d{16}/,
-    errorMessage: "Please enter a 16 digit card number",
+    errorMessage: "Enter a 16 digit card number",
   },
   {
     id: "ccv",
@@ -26,7 +26,7 @@ const formFieldsArray: FormField[] = [
     placeholder: "123",
     autoComplete: "cc-csc",
     pattern: /\d{3}/,
-    errorMessage: "Please enter a 3 digit CCV",
+    errorMessage: "Enter a 3 digit CCV",
   },
 ]
 

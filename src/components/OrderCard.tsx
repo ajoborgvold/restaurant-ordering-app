@@ -19,7 +19,7 @@ export default function OrderCard(): JSX.Element {
           <p>Quant:</p>
           <p>{itemQuantity}</p>
         </div>
-        <p className="ml-auto text-lg sm:text-xl md:text-2xl">$ {itemPrice}</p>
+        <p className="ml-auto text-lg sm:text-xl md:text-2xl font-semibold">$ {itemPrice}</p>
       </li>
     )
   })

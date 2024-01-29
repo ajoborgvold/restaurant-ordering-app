@@ -20,7 +20,7 @@ export default function MenuCard(): JSX.Element {
             {item.name}
           </h3>
           <p className="md:text-lg italic">{item.ingredients.join(", ")}</p>
-          <p className="text-xl md:text-2xl mt-4">${item.price}</p>
+          <p className="text-xl md:text-2xl sm:mt-2 md:mt-4">${item.price}</p>
         </div>
         {countForItem ? (
           <div className="ml-auto flex items-center gap-4">
@@ -46,7 +46,7 @@ export default function MenuCard(): JSX.Element {
             Add
           </button>
         )}
-        <div className="order-first flex items-center text-7xl md:text-8xl dark:opacity-80">
+        <div className="order-first flex items-center text-6xl sm:text-7xl md:text-8xl dark:opacity-80">
           {item.image}
         </div>
       </li>

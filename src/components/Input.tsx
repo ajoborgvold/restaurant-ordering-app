@@ -17,7 +17,7 @@ export default function Input(): JSX.Element {
             id={item.id}
             type={item.type}
             placeholder={item.placeholder}
-            inputMode="numeric"
+            inputMode={item.type === "text" ? "text" : "numeric"}
             autoComplete={item.autoComplete}
             pattern={item.pattern.source}
             onChange={(e) => handleInputChange(e, item.id)}

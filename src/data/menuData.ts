@@ -33,7 +33,7 @@ const menuData: MenuObj[] = [
     name: "Coffee",
     price: 5,
     image: "☕️",
-    ingredients: ["water", "coffee beans"],
+    ingredients: ["coffee beans", "water"],
     isMealDeal: false,
   },
   {
@@ -41,12 +41,10 @@ const menuData: MenuObj[] = [
     price: 4,
     image: "🥐",
     ingredients: [
-      "vegan butter",
+      "butter",
       "flour",
       "sugar",
-      "salt",
-      "yeast",
-      "oat milk",
+      "milk",
     ],
     isMealDeal: false,
   },

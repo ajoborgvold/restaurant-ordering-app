@@ -91,11 +91,11 @@ export default function Order(): JSX.Element {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
               Your order
             </h2>
-            <section className="w-full sm:w-3/4 lg:w-1/2 flex flex-col px-8">
+            <section className="w-full sm:w-3/4 lg:w-1/2 flex flex-col px-2 sm:px-8">
               <OrderCard />
               <div className="mt-8 flex flex-col bg-amber-300 dark:bg-slate-400 text-amber-950 dark:text-slate-950 text-xl  p-4 rounded">
                 {mealDealCount > 0 && (
-                  <div className="w-full flex justify-between">
+                  <div className="w-full flex justify-between text-sm sm:text-lg md:text-xl">
                     <p>Meal deal discount x {mealDealCount}</p>
                     <p>-$ {totalDiscount}</p>
                   </div>
