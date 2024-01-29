@@ -113,8 +113,8 @@ export default function Order(): JSX.Element {
                   Complete order
                 </button>
               ) : (
-                <div className="self-center mt-14 flex flex-col gap-4">
-                  <p className="bg-amber-700 dark:bg-slate-400 text-amber-50 dark:text-slate-950 text-xl sm:text-2xl md:text-3xl text-center py-2 px-4 md:py-4 md:px-8 rounded-2xl">
+                <div className="self-center mt-10 md:mt-14 flex flex-col md:gap-2">
+                  <p className="text-xl sm:text-2xl md:text-3xl text-center">
                     Thanks {userFirstName}, your order is on its way!
                   </p>
                   <RouteLink
