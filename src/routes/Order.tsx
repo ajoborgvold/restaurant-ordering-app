@@ -89,7 +89,7 @@ export default function Order(): JSX.Element {
         {cartItems.length ? (
           <>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
-              Your order
+              {!isOrderCompleted ? "Shopping cart" : "Order summary"}
             </h2>
             <section className="w-full sm:w-3/4 lg:w-1/2 flex flex-col px-2 sm:px-8">
               <OrderCard />
