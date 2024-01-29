@@ -4,6 +4,7 @@ import { AppContextProvider } from "./context/AppContext"
 import Layout from "./components/Layout"
 import Menu from "./routes/Menu"
 import Order from "./routes/Order"
+import Error from "./routes/Error"
 
 function App(): JSX.Element {
   const router = createBrowserRouter([
@@ -20,6 +21,10 @@ function App(): JSX.Element {
           element: <Order />
         }
       ]
+    },
+    {
+      path: "*",
+      element: <Error />
     }
   ])
 
