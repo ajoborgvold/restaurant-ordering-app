@@ -95,7 +95,7 @@ export default function Order(): JSX.Element {
               <OrderCard />
               <div className="mt-8 flex flex-col bg-amber-300 dark:bg-slate-400 text-amber-950 dark:text-slate-950 text-xl  p-4 rounded">
                 {mealDealCount > 0 && (
-                  <div className="w-full flex justify-between text-sm sm:text-lg md:text-xl">
+                  <div className="w-full flex justify-between text-lg sm:text-base md:text-xl">
                     <p>Meal deal discount x {mealDealCount}</p>
                     <p>-$ {totalDiscount}</p>
                   </div>
