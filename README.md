@@ -47,6 +47,6 @@ This is the first ever project that I have built using Tailwind CSS and TypeScri
 3. The Tailwind units
 4. Various modifiers for e.g.: responsive breakpoints, `hover`/`focus`, `odd`/`even`, `group`, `dark`
 #### TypeScript:
-1. Various TS types, e.g.: `primitive types`, `arrays`, `objects`, `JSX elements`, `event types`
+1. Various TS types, e.g.: `primitive types`, `arrays`, `objects`, `union types`, `tuples`, `JSX elements`, `event types`
 2. Interfaces
 3. TS in combination with both the `React Context API` and `React props`
