@@ -64,6 +64,8 @@ function AppContextProvider({
   const [isOrderCompleted, setIsOrderCompleted] = useState(false)
   const [isCartReset, setIsCartReset] = useState(false)
 
+
+  //=== Reset cart when user returns to menu after completing order ===//
   useEffect(() => {
     if (isCartReset) {
       setCartCount(0)
@@ -77,15 +79,20 @@ function AppContextProvider({
     }
   }, [isCartReset])
 
+  //=== Update the cart item count when the user adds/subtracts 1 from item ===//
   useEffect(() => {
     setCartItems((prevCartItems) =>
       prevCartItems.filter((item) => itemCounts[item.name] !== 0)
     )
   }, [itemCounts])
 
+  //=== Handle focus on form elements to determine when to display a message to the user about the required form input pattern ===//
   useEffect(() => {
     setIsInputFocused({})
   }, [formData])
+
+
+  //=== HANDLE SHOPPING CART LOGIC ===//
 
   function addToCart(index: number): void {
     const targetItem = menuData[index]
@@ -115,6 +122,10 @@ function AppContextProvider({
     setCartCount((prevCartCount) => prevCartCount - 1)
   }
 
+
+  //=== HANDLE PAYMENT LOGIC ===//
+
+  /* Open/close modal */
   function openPaymentModal() {
     setIsModalOpen(true)
   }
@@ -123,12 +134,16 @@ function AppContextProvider({
     setIsModalOpen(false)
   }
 
+  /* Handle payment form input, validation and submission */
   function handleInputChange(e: ChangeEvent<HTMLInputElement>, id: string) {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [id]: e.target.value,
     }))
-    validateUserInput(id, e.target.value)
+    // validateUserInput(id, e.target.value)
+    setTimeout(() => {
+      validateUserInput(id, e.target.value)
+    }, 500);
   }
 
   function handleEmptyInput(e: FocusEvent<HTMLInputElement>, id: string) {
@@ -183,6 +198,8 @@ function AppContextProvider({
     }
   }
 
+
+  //=== Reset shopping cart when the user returns to menu after completing order ===//
   function resetCart() {
     setIsCartReset(true)
   }
